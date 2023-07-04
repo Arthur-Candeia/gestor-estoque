@@ -1,0 +1,31 @@
+#dashboard {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  //grid-template-rows: minmax(1400px, auto);
+  grid-template-areas:
+  "title vazio1 vazio1 vazio1"
+  "cards cards cards cards"
+  "cards cards cards cards"
+  "recentes recentes acabando acabando"
+  "recentes recentes acabando acabando"
+  "recentes recentes acabando acabando"
+  "recentes recentes acabando acabando"
+  "recentes recentes acabando acabando";
+}
+
+h1 {
+  grid-area: title;
+}
+
+#cards {
+  grid-area: cards;
+}
+
+#recentItems {
+  grid-area: recentes;
+}
+
+#fewItems {
+  grid-area: acabando;
+}
