@@ -12,20 +12,95 @@
   "recentes recentes acabando acabando"
   "recentes recentes acabando acabando"
   "recentes recentes acabando acabando";
-}
 
-h1 {
-  grid-area: title;
+  table {
+    border-collapse: collapse;
+    width: 93%;
+  
+    tbody {
+      tr > td {
+        padding: 20px;
+        color: white;
+
+        a {
+          text-decoration: none;
+          color: black;
+          background-color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    thead {
+      color: white;
+      background-color: #111;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+
+      tr > th {
+        text-align: left;
+        padding: 20px;
+      }
+    }
+  }
 }
 
 #cards {
   grid-area: cards;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.card {
+  width: 22%;
+  padding: 10px 20px 30px;
+  color: white;
+  background-color: #111;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+
+  .cardQtd {
+    display: block;
+    text-align: center;
+    font-size: 48px;
+    margin-top: 15px;
+  }
 }
 
 #recentItems {
   grid-area: recentes;
+  margin-left: 2.5vw;
+
+  thead > tr > th {
+    width: 50%;
+  }
 }
 
 #fewItems {
   grid-area: acabando;
+  margin-left: 1.2vw;
+}
+
+@media screen and (max-width: 800px) {
+  #cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    .card {
+      min-width: 50%;
+    }
+  }
+
+  #dashboard {
+    grid-template-areas:
+    "title vazio1 vazio1 vazio1"
+    "cards cards cards cards"
+    "cards cards cards cards"
+    "recentes recentes recentes recentes"
+    "recentes recentes recentes recentes"
+    "acabando acabando acabando acabando"
+    "acabando acabando acabando acabando";
+  }
 }

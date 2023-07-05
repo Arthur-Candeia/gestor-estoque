@@ -22,26 +22,38 @@ export default function Dashboard() {
         <span className="cardQtd">2</span>
         </div>
       </aside>
-      <aside id="recentItems">
-        <table>
-          <thead>
-            <tr>
-              <th>Itens Recentes</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          </table>
-      </aside>
-      <aside id="fewItems">
-        <table>
-          <thead>
-            <tr>
-              <th>Itens Acabando</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-        </table>
-      </aside>
+      
+      <table id="recentItems">
+        <thead>
+          <tr>
+            <th style={{textAlign: 'left'}}>Itens Recentes</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>7 wonderful</td>
+          <td><a href="#">Ver</a></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table id="fewItems">
+        <thead>
+          <tr>
+            <th style={{width: '50%'}}>Itens Acabando</th>
+            <th>Qtd.</th>
+            <th >Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td >7 wonderful</td>
+          <td>8</td>
+          <td>Ver</td>
+        </tr>
+        </tbody>
+      </table>
     </section>
   )
 }
