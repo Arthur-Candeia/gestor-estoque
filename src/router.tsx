@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Stock from "./components/Stock/Stock";
+import Item from "./components/Item/Item";
 
 const router = createBrowserRouter([
 {
@@ -16,11 +17,11 @@ const router = createBrowserRouter([
       path: '/stock',
       element: <Stock></Stock>
     },
-    /*{
-      path: '/stock/:productId',
-      element: <Product></Product>
-    },
     {
+      path: '/stock/:productId',
+      element: <Item></Item>
+    },
+    /*{
       path: '/stock/newItem',
       element: <NewItem></NewItem>
     },

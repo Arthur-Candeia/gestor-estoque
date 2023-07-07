@@ -26,7 +26,7 @@ export default function Stock() {
             <td>abc</td>
             <td>abc</td>
             <td>
-              <a href="#">Ver</a>
+              <Link to="/stock/asda">Ver</Link>
               <a href="#">Atualizar</a>
               <a href="#">Excluir</a>
             </td>
