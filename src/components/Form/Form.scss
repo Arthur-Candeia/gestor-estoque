@@ -1,0 +1,77 @@
+#form {
+  .navigation {
+    width: 95vw;
+    margin: 0 auto 20px;
+    border-bottom: 1px solid #777;
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      margin-right: 20px;
+      padding: 0px 15px 15px;
+      color: white;
+    }
+  }
+
+  form {
+    width: 90%;
+    margin: 0 auto;
+
+    div {
+      display: inline-block;
+      width: 24%;
+      margin-right: 16.4px;
+
+      input, select, textarea {
+        width: 100%;
+        margin-top: 5px;
+        padding: 10px;
+        color: white;
+        background-color: #111;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+      }
+
+      label {
+        color: white;
+      }
+    }
+
+    div:nth-last-child(1) {
+      width: 100%;
+      margin-top: 20px;
+
+      textarea {
+        width: 100%;
+        resize: none;
+      }
+
+      input {
+        width: 10%;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    }
+
+    div:nth-last-child(3) {
+      margin-right: 0px;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+  #form {
+    form {
+      label {
+        font-size: 0.7rem;
+      }
+      div:nth-last-child(1) {
+        input {
+          width: auto;
+        }
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Stock from "./components/Stock/Stock";
 import Item from "./components/Item/Item";
+import Form from "./components/Form/Form";
 
 const router = createBrowserRouter([
 {
@@ -21,15 +22,14 @@ const router = createBrowserRouter([
       path: '/stock/:productId',
       element: <Item></Item>
     },
-    /*{
+    {
       path: '/stock/newItem',
-      element: <NewItem></NewItem>
+      element: <Form></Form>
     },
     {
-      path: '/stock/editItem',
-      element: <EditItem></EditItem>
+      path: '/stock/editItem/:id',
+      element: <Form></Form>
     }
-    */
   ]
 }
 ])
