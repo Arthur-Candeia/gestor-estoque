@@ -5,6 +5,8 @@ import Stock from "./components/Stock/Stock";
 import Item from "./components/Item/Item";
 import Form from "./components/Form/Form";
 
+import loaderAllItems from "./loaders/loaderAllItems";
+
 const router = createBrowserRouter([
 {
   path: '/',
@@ -16,7 +18,9 @@ const router = createBrowserRouter([
     },
     {
       path: '/stock',
-      element: <Stock></Stock>
+      element: <Stock></Stock>,
+      loader: loaderAllItems,
+      errorElement: <h2>Algo deu errado</h2>
     },
     {
       path: '/stock/:productId',
@@ -27,7 +31,7 @@ const router = createBrowserRouter([
       element: <Form></Form>
     },
     {
-      path: '/stock/editItem/:id',
+      path: '/stock/editItem/:productId',
       element: <Form></Form>
     }
   ]
