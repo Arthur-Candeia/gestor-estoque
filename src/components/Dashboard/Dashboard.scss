@@ -16,10 +16,14 @@
   table {
     border-collapse: collapse;
     width: 93%;
+    height: auto;
+    display: inline-block;
   
     tbody {
       tr > td {
+        width: 100%;
         padding: 20px;
+        padding-right: 100px;
         color: white;
 
         a {
@@ -38,6 +42,7 @@
       box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
 
       tr > th {
+        width: 100%;
         text-align: left;
         padding: 20px;
       }
@@ -71,10 +76,6 @@
 #recentItems {
   grid-area: recentes;
   margin-left: 2.5vw;
-
-  thead > tr > th {
-    width: 50%;
-  }
 }
 
 #fewItems {
@@ -83,6 +84,23 @@
 }
 
 @media screen and (max-width: 800px) {
+  #dashboard {
+    grid-template-areas:
+    "title vazio1 vazio1 vazio1"
+    "cards cards cards cards"
+    "cards cards cards cards"
+    "recentes recentes recentes recentes"
+    "recentes recentes recentes recentes"
+    "acabando acabando acabando acabando"
+    "acabando acabando acabando acabando";
+
+    table > tbody {
+      tr > td {
+        padding: 20px;
+      }
+    }
+  }
+
   #cards {
     flex-direction: column;
     align-items: center;
@@ -93,14 +111,7 @@
     }
   }
 
-  #dashboard {
-    grid-template-areas:
-    "title vazio1 vazio1 vazio1"
-    "cards cards cards cards"
-    "cards cards cards cards"
-    "recentes recentes recentes recentes"
-    "recentes recentes recentes recentes"
-    "acabando acabando acabando acabando"
-    "acabando acabando acabando acabando";
+  #recentItems, #fewItems {
+    margin: 20px auto;
   }
 }

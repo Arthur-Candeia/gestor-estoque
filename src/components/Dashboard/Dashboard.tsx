@@ -1,7 +1,12 @@
+import { Link, useLoaderData } from 'react-router-dom';
+import compareDates from './compareDates';
+import cardInfos from './cardInfos';
+import item from '../../interfaces/itemInterface';
 import './Dashboard.scss'
 
 export default function Dashboard() {
-  
+  const allItems: item[] = useLoaderData() as item[]
+  const {diversity, totalItems, fewItems, recentItems} = cardInfos(allItems)
 
   return (
     <section id="dashboard">
@@ -9,19 +14,19 @@ export default function Dashboard() {
       <aside id="cards">
         <div className="card">
           <p>Diversidade de itens</p>
-          <span className="cardQtd">8</span>
+          <span className="cardQtd">{diversity}</span>
         </div>
         <div className="card">
           <p>Inventário total</p>
-          <span className="cardQtd">7</span>
+          <span className="cardQtd">{totalItems}</span>
         </div>
         <div className="card">
           <p>Itens recentes</p>
-          <span className="cardQtd">7</span>
+          <span className="cardQtd">{recentItems}</span>
         </div>
         <div className="card">
         <p>Itens acabando</p>
-        <span className="cardQtd">2</span>
+        <span className="cardQtd">{fewItems}</span>
         </div>
       </aside>
       
@@ -33,10 +38,16 @@ export default function Dashboard() {
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>7 wonderful</td>
-          <td><a href="#">Ver</a></td>
-        </tr>
+          {allItems?.map((element, index) => {
+            if (compareDates(element.dateToCompare)) {
+              return (
+              <tr key={index}>
+                <td>{element.name}</td>
+                <td><Link to={`/stock/${index}`}>Ver</Link></td>
+                </tr>
+              )
+            }
+          })}
         </tbody>
       </table>
 
@@ -49,11 +60,17 @@ export default function Dashboard() {
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <td >7 wonderful</td>
-          <td>8</td>
-          <td>Ver</td>
-        </tr>
+          {allItems?.map((element, index) => {
+            if (Number(element.qtd) < 10) {
+              return (
+              <tr key={index}>
+                <td>{element.name}</td>
+                <td>{element.qtd}</td>
+                <td><Link to={`/stock/${index}`}>Ver</Link></td>
+                </tr>
+              )
+            }
+          })}
         </tbody>
       </table>
     </section>

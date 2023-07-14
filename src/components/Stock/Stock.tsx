@@ -1,16 +1,11 @@
 import { Link, useLoaderData } from "react-router-dom";
+import deleteItem from "../Item/deleteItem";
+import item from '../../interfaces/itemInterface';
 import './Stock.scss';
-
-interface item {
-  name: string,
-  qtd: string,
-  price: string,
-  category: string,
-  description: string
-}
 
 export default function Stock() {
   const allItems: item[] = useLoaderData() as item[]
+
   return (
     <section id="stock">
       <h1>Stock Items</h1>
@@ -29,7 +24,7 @@ export default function Stock() {
           </tr>
         </thead>
         <tbody>
-          {allItems?.map((element, index) =>
+          {allItems?.length > 0 ? allItems?.map((element, index) =>
           <tr key={index}>
             <td>{index}</td>
             <td>{element.name}</td>
@@ -38,10 +33,10 @@ export default function Stock() {
             <td>
               <Link to={`/stock/${index}`}>Ver</Link>
               <Link to={`/stock/editItem/${index}`}>Atualizar</Link>
-              <a href="#">Excluir</a>
+              <Link to="/stock" onClick={() => deleteItem(allItems, String(index))}>Excluir</Link>
             </td>
           </tr>
-          )}
+          ) : <tr><td>Não há produtos aqui, adicione-os!</td></tr>}
         </tbody>
       </table>
     </section>

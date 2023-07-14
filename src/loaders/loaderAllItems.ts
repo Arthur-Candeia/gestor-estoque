@@ -3,6 +3,7 @@ export default function loaderAllItems() {
     return JSON.parse(localStorage.allItems)
   }
   else {
-    return undefined
+    localStorage.allItems = '[]'
+    return JSON.parse(localStorage.allItems)
   }
 }

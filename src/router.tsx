@@ -14,7 +14,9 @@ const router = createBrowserRouter([
   children: [
     {
       index: true,
-      element: <Dashboard />
+      element: <Dashboard />,
+      loader: loaderAllItems,
+      errorElement: <h2>Algo deu errado</h2>
     },
     {
       path: '/stock',
@@ -24,15 +26,19 @@ const router = createBrowserRouter([
     },
     {
       path: '/stock/:productId',
-      element: <Item></Item>
+      element: <Item></Item>,
+      loader: loaderAllItems,
+      errorElement: <h2>Algo deu errado</h2>
     },
     {
       path: '/stock/newItem',
       element: <Form></Form>
     },
     {
-      path: '/stock/editItem/:productId',
-      element: <Form></Form>
+      path: '/stock/editItem/:productId/',
+      element: <Form></Form>,
+      loader: loaderAllItems,
+      errorElement: <h2>Algo deu errado</h2>
     }
   ]
 }

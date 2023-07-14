@@ -1,38 +1,35 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import sendForm from "./sendForm";
+import item from '../../interfaces/itemInterface';
 import './Form.scss';
-import { useState } from "react";
-
-interface item {
-  name: string,
-  qtd: string,
-  price: string,
-  category: string,
-  description: string
-}
 
 export default function Form() {
-
-  const {productId} = useParams()
+  
   const navigate = useNavigate()
+  const allItems = useLoaderData() as item[]
+  const {productId} = useParams()
+  let editItem: item | undefined;
 
-  const [inputName, setInputName] = useState<string>('')
-  const [inputQtd, setInputQtd] = useState<string>('')
-  const [inputPrice, setInputPrice] = useState<string>('')
-  const [select, setSelect] = useState<string>('X')
-  const [description, setDescription] = useState<string>('')
+  if (productId && localStorage) {
+    editItem = allItems[Number(productId)]
+  }
+
+  useEffect(() => {
+    if (editItem == undefined && productId) {
+      navigate('/stock')
+    }
+  },[editItem, productId, navigate])
+
+  const [inputName, setInputName] = useState<string>(editItem?.name ?? '')
+  const [inputQtd, setInputQtd] = useState<string>(editItem?.qtd ?? '')
+  const [inputPrice, setInputPrice] = useState<string>(editItem?.price ?? '')
+  const [select, setSelect] = useState<string>(editItem?.category ?? 'X')
+  const [description, setDescription] = useState<string>(editItem?.description ?? '')
 
   function handleSubmit(ev: React.FormEvent) {   
     ev.preventDefault()
-    
-    if (localStorage.allItems) {
-      const allItems: item[] = JSON.parse(localStorage.allItems)
-      allItems.push({name: inputName, qtd: inputQtd, price: inputPrice, category: select, description})
-      localStorage.allItems = JSON.stringify(allItems)
-    }
-    else {
-      const item = [{name: inputName, qtd: inputQtd, price: inputPrice, category: select, description}]
-      localStorage.allItems = JSON.stringify(item)
-    }
+    sendForm(productId, inputName, inputQtd, inputPrice, select, description)
     navigate('/stock')
   }
 
@@ -54,11 +51,11 @@ export default function Form() {
         </div>
         <div>
           <label htmlFor="price">Preço</label> <br />
-          <input type="number" id="price" value={inputPrice} onChange={(ev) => setInputPrice(ev.target.value)} required/>
+          <input type="number" id="price" value={inputPrice} onChange={(ev) => setInputPrice(ev.target.value)} step={0.01}required/>
         </div>
         <div>
           <label htmlFor="category">Categoria</label> <br />
-          <select id="category" value={select} onChange={(ev) => setSelect(ev.target.value)}>
+          <select id="category" value={select} onChange={(ev) => setSelect(ev.target.value)} required>
             <option disabled value="X">Selecione uma categoria...</option>
             <option value="Jogos">Jogos</option>
             <option value="Comida">Comida</option>
@@ -69,7 +66,7 @@ export default function Form() {
         </div> <br />
         <div>
           <label htmlFor="description">Descrição</label> <br />
-          <textarea id="description" cols={30} rows={10} value={description} onChange={(ev) => setDescription(ev.target.value)}></textarea> <br />
+          <textarea id="description" cols={30} rows={10} value={description} onChange={(ev) => setDescription(ev.target.value != '' ? ev.target.value : '')} required></textarea> <br />
           <input type="submit" value="SALVAR" />
         </div>
       </form>
