@@ -17,3 +17,13 @@ h1 {
   margin-bottom: 20px;
   color: white;
 }
+
+table {
+  tbody {
+    tr {
+      &:hover {
+        background-color: #333;
+      }
+    }
+  }
+}

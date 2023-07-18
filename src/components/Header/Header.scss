@@ -18,6 +18,10 @@ header {
         font-weight: normal;
         font-size: 16px;
         color: white;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

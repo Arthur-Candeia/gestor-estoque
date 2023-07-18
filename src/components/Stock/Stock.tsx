@@ -26,7 +26,7 @@ export default function Stock() {
         <tbody>
           {allItems?.length > 0 ? allItems?.map((element, index) =>
           <tr key={index}>
-            <td>{index}</td>
+            <td>{index + 1}</td>
             <td>{element.name}</td>
             <td>{element.qtd} unid.</td>
             <td>{element.category}</td>
